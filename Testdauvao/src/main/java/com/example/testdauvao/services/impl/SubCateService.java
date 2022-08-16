@@ -24,7 +24,7 @@ public class SubCateService implements ICommon<SubCategory, Long> {
 
     @Override
     public List<SubCategory> selectAll(int page) {
-        return null;
+        return subCateRepository.findAll();
     }
 
     @Override
@@ -63,9 +63,6 @@ public class SubCateService implements ICommon<SubCategory, Long> {
     }
 
     public String check(SubCategory subCategory){
-        if ("".equals(subCategory.getSubCateCode())
-                || "".equals(subCategory.getSubCateName()))
-            return "Không được trống";
         if (!subCategory.getSubCateCode().matches("^SA[0-9]{4}$")) return "Code không hợp lệ";
         if (!subCategory.getSubCateName().matches("^[A-Za-z]+$")) return "Name không hợp lệ";
         Optional<Category> category = cateRepository.findById(subCategory.getCategory().getId());

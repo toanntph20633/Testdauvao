@@ -15,7 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 /**
@@ -29,12 +29,12 @@ public class SubCategory implements Serializable {
     @Column(name = "id", nullable = false)
     private Long id;
     @Column(name = "sub_cate_code", nullable = true, length = 20)
-    @NotEmpty(message = "Không được trống Code")
+    @NotBlank(message = "Không được trống Code")
     private String subCateCode;
     @Column(name = "sub_cate_name", nullable = true, length = 50)
-    @NotEmpty(message = "Không được trống Name")
+    @NotBlank(message = "Không được trống Name")
     private String subCateName;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cate_id", nullable = true)
     private Category category;
 
